@@ -12,7 +12,7 @@ class ItcastSpider(scrapy.Spider):
     def parse(self, response):
         node_list = response.xpath("//div[@class='maincon']//div[2]")
         # 用来存储所有字段
-        items = []
+        # items = []
         for node in node_list:
             item = ChuanzhiItem()
             # extract() 将xpath对象转化为 Unicode 字符串返回的是一个列表，  extract_first() 取第一个
@@ -24,5 +24,6 @@ class ItcastSpider(scrapy.Spider):
             item['title'] = title
             item['info'] = info
 
-            items.append(item)
-        return items
+            yield item
+            # items.append(item)
+        # return items
